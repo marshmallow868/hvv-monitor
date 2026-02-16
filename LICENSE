@@ -1,13 +1,48 @@
 Copyright (c) 2026 Mullet. All rights reserved.
 
 1. PERMISSION TO USE
-Permission is hereby granted to any person obtaining a copy of this software to use it for personal or internal purposes and to view the source code at no cost.
+Permission is hereby granted to any person obtaining a copy of this
+software to use it for personal or internal purposes and to view the source
+code at no cost.
 
 2. RESTRICTIONS
-The following actions are strictly prohibited without the express prior written permission of the copyright holder (Mullet):
-- Commercial Sale: You may not sell, rent, or lease the software or any portion thereof, either as a standalone product or as part of a bundle.
-- Integration: You may not integrate, embed, or distribute this software, its source code, or compiled binaries into other software projects, libraries, or commercial products.
-- Derivative Works: You may not create derivative works for the purpose of redistributing them under a different license.
+The following actions are strictly prohibited without the express prior
+written permission of the copyright holder (Mullet):
+- Commercial Sale: You may not sell, rent, or lease the software or any
+portion thereof, either as a standalone product or as part of a bundle.
+- Integration: You may not integrate, embed, or distribute this software,
+its source code, or compiled binaries into other software projects,
+libraries, or commercial products.
+- Derivative Works: You may not create derivative works for the purpose of
+redistributing them under a different license.
 
 3. NO WARRANTY
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+---------------------------------------------------------------------------
+THIRD-PARTY COMPONENTS
+This software incorporates the "hafas-client" library
+(https://github.com/public-transport/hafas-client), which is licensed under
+a proprietary license. The restrictions in Section 2 above do not apply to
+the hafas-client components.
+---------------------------------------------------------------------------
+
+Copyright (c) 2025, Jannis R
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.

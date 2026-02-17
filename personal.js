@@ -120,7 +120,7 @@ function renderTable(departures) {
     let uiString = `{bold}${headerLine} ${headerDir} ${headerTime} Status{/bold}\n`;
     uiString += "{#444-fg}" + "-".repeat(WINDOW_WIDTH - 2) + "{/}\n";
 
-    departures.slice(0, 17).forEach(dep => {
+    departures.slice(0, 19).forEach(dep => {
         const design = getLineDesign(dep);
         const cleanDir = normalizeStationName(dep.direction || "");
         const time = format(new Date(dep.when || dep.plannedWhen), "HH:mm");

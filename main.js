@@ -5,11 +5,11 @@ import { format } from "date-fns";
 
 const DEFAULT_STATION_NAME = "Hamburg Hbf";
 const UPDATE_INTERVAL_MS = 10000;
-const hafas = createClient(nahshProfile, "hvv-dashboard");
+const hafas = createClient(nahshProfile, "hvv-monitor");
 
 const screen = blessed.screen({
     smartCSR: true,
-    title: "HVV Monitor",
+    title: "General Monitor",
     fullUnicode: true
 });
 

@@ -1,44 +1,66 @@
 # hvv-monitor
 
-A real-time, terminal-based departure board for the Hamburg Public Transport Network (**HVV**), featuring a general search interface and a specialized compact monitor for personal bus stops.
+A real-time, terminal-based departure board for the Hamburg Public Transport Network (HVV). The application provides a general search interface and a specialized compact monitor designed for monitoring specific stations.
+
+## Table of Contents
+* [Features](#features)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+* [Usage](#usage)
+    * [General Monitor](#1-general-monitor)
+    * [Personal Monitor](#2-personal-monitor)
+* [Controls](#controls)
+* [Configuration](#configuration)
+* [Shell Integration](#shell-integration)
+* [Contributing](#contributing)
+* [License](#license)
 
 ## Features
-- **Live Updates**: Real-time departure data via `hafas-client` (Nah.SH profile).
-- **HVV Branding**: High-fidelity UI colors for U-Bahn, S-Bahn and Regional rail lines.
-- **Smart Filtering**: Automatic station name normalization (removes redundant city prefixes).
-- **Dual Modes**: 
-    - **General Dashboard**: Full-screen interactive search and monitoring.
-    - **Personal Monitor**: A fixed, centered window optimized for specific bus stops.
+
+* **Real-time Data Retrieval**: Fetches live departure data utilizing the `hafas-client` library (configured with the Nah.SH profile).
+* **Accurate Line Representation**: Applies accurate HVV transit color codes for U-Bahn, S-Bahn, and Regional rail lines.
+* **String Normalization**: Automatically filters and removes redundant city prefixes from station names to optimize terminal space.
+* **Dual Operation Modes**: Includes a full-screen interactive dashboard and a fixed-dimension monitor for dedicated usage.
+
+## Prerequisites
+
+Before utilizing this application, ensure the following dependencies are installed on your system:
+* **Node.js**: Version 20.20.0 or higher.
+* **Git**: Required for cloning the repository.
+* **npm**: Node Package Manager (included with standard Node.js installations).
 
 ## Installation
-Ensure you have installed **Node.js** Version 20 or higher.
 
-#### Clone this repository
-
+#### 1. Clone the repository to your local machine:
 ```bash
-git clone https://github.com/marshmallow868/hvv-monitor.git
+git clone [https://github.com/marshmallow868/hvv-monitor.git](https://github.com/marshmallow868/hvv-monitor.git)
+```
+
+#### 2. Navigate into the project directory:
+```bash
 cd hvv-monitor
 ```
 
-#### Install the dependencies
-
+#### 3. Install the required dependencies:
 ```bash
 npm install
 ```
 
-## Quick Start
+## Usage
 
-#### 1. General Dashboard
+The application provides two distinct executables depending on your use case.
 
-The interactive version with search functionality (`S`) and live refresh (`R`).
+#### 1. General Monitor
+The interactive version featuring station search functionality and a full-screen interface.
 
 ```bash
 node main.js
 ```
 
-#### 2. Personal Monitor
+![general](/assets/general.png)
 
-The centered, compact version designed for fixed locations like your home bus stop.
+#### 2. Personal Monitor
+A centered, compact version designed for fixed locations, such as monitoring a specific bus stop near your residence. The station name must be passed as a positional argument. Quotation marks are not required.
 
 ```bash
 node personal.js STATION_NAME
@@ -50,39 +72,51 @@ Example:
 node personal.js Hamburg Altona
 ```
 
-Quotes are not needed.
+![personal](/assets/personal.png)
 
-## Shortcuts
+## Controls
 
-| Key | Action |
-| --- | --- |
-| **S** | Search for a new station (General Dashboard only) |
-| **R** | Manual refresh of departure data |
-| **Q** | Quit the application |
-| **Ctrl+C** | Force exit |
+The application relies on standard keyboard inputs for navigation and control.
+
+| Key | Action | Context |
+| :--- | :--- | :--- |
+| **S** | Search for a new station | General Monitor only |
+| **R** | Execute a manual refresh of departure data | Both Modes |
+| **Q** | Quit the application gracefully | Both Modes |
+| **Ctrl+C** | Force termination | Both Modes |
 
 ## Configuration
 
-Change update interval, default is 10 seconds:
+Application parameters are currently managed via constants defined within the source code. To modify these values, open the respective `.js` files in a text editor.
+
+#### Update Frequency:
+To change the automated refresh interval (default is 10 seconds):
 
 ```javascript
 const UPDATE_INTERVAL_MS = 10000;
 ```
 
-Change window size of **Personal Monitor**, default is 65x25:
+#### Personal Monitor Dimensions:
+To adjust the terminal window dimensions for the Personal Monitor (default is 65x25):
 
 ```javascript
 const WINDOW_WIDTH = 65;
 const WINDOW_HEIGHT = 25;
 ```
 
-## Useful
+## Shell Integration
 
-You can add your home bus stop to your .zshrc for easy access:
+For streamlined execution, it is recommended to create a shell alias for your frequently used stations. You can append the following line to your `.bashrc` or `.zshrc` file:
 
 ```bash
-alias STATION_NAME="node ~/hvv-monitor/personal.js STATION_NAME"
+alias hvv="node ~/path/to/hvv-monitor/personal.js STATION_NAME"
 ```
+
+*Note: Ensure you update `~/path/to/hvv-monitor/` to reflect the actual absolute path of your cloned repository.*
+
+## Contributing
+
+Modifications, bug reports, and feature requests are welcome. If you wish to contribute to the codebase, please open an issue first to discuss the proposed changes. For significant code additions, standard pull request procedures apply.
 
 ## License
 

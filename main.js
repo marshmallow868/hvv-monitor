@@ -122,7 +122,7 @@ function renderTable(departures) {
     const colLine = 9;
     const colTime = 14;
     const colStatus = 6;
-    const colDir = Math.max(10, screen.width - (colLine + colTime + colStatus + 6));
+    const colDir = screen.width - (colLine + colTime + colStatus + 6);
 
     const headerLine = "Line".padEnd(colLine);
     const headerDir = "Direction".padEnd(colDir);

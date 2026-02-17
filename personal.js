@@ -3,7 +3,7 @@ import { createClient } from "hafas-client";
 import { profile as nahshProfile } from "hafas-client/p/nahsh/index.js";
 import { format } from "date-fns";
 
-const DEFAULT_STATION_NAME = "Sandort";
+const DEFAULT_STATION_NAME = process.argv.slice(2).join(" ");
 const UPDATE_INTERVAL_MS = 10000;
 const hafas = createClient(nahshProfile, "hvv-dashboard");
 
@@ -13,7 +13,7 @@ const screen = blessed.screen({
     fullUnicode: true
 });
 
-const WINDOW_WIDTH = 50;
+const WINDOW_WIDTH = 65;
 const WINDOW_HEIGHT = 25;
 
 const layout = blessed.box({
@@ -108,10 +108,10 @@ function renderHeader(name) {
 }
 
 function renderTable(departures) {
-    const colLine = 5;
-    const colTime = 10;
-    const colStatus = 5;
-    const colDir = WINDOW_WIDTH - (colLine + colTime + colStatus + 7);
+    const colLine = 8;
+    const colTime = 13;
+    const colStatus = 6;
+    const colDir = WINDOW_WIDTH - (colLine + colTime + colStatus + 6);
 
     const headerLine = "Line".padEnd(colLine);
     const headerDir = "Direction".padEnd(colDir);

@@ -60,7 +60,7 @@ const inputFrom = blessed.textbox({
     height: 1,
     keys: true,
     inputOnFocus: true,
-    style: { bg: "#333", fg: "white", focus: { bg: "#555" } }
+    style: { bg: "#222", fg: "white", focus: { bg: "#777" } }
 });
 
 const inputTo = blessed.textbox({
@@ -71,7 +71,7 @@ const inputTo = blessed.textbox({
     height: 1,
     keys: true,
     inputOnFocus: true,
-    style: { bg: "#333", fg: "white", focus: { bg: "#555" } }
+    style: { bg: "#222", fg: "white", focus: { bg: "#777" } }
 });
 
 const searchStatus = blessed.text({
@@ -79,16 +79,17 @@ const searchStatus = blessed.text({
     bottom: 0,
     left: "center",
     content: "Press ENTER to search",
-    style: { fg: "#777" }
+    style: { fg: "#777", bg: "black" }
 });
 
-blessed.text({ parent: searchModal, top: 1, left: 1, content: "From:" });
-blessed.text({ parent: searchModal, top: 3, left: 1, content: "To:" });
+blessed.text({ parent: searchModal, top: 1, left: 1, content: "From:", style: { bg: "black" } });
+blessed.text({ parent: searchModal, top: 3, left: 1, content: "To:", style: { bg: "black" } });
 
 [header, tableBox, footer].forEach(el => screen.append(el));
 
 let lastFrom = "";
 let lastTo = "";
+let isFirstSearch = true;
 
 function finalizeSpacing(text) {
     return text.replace(/\s+/g, " ").trim();
@@ -96,25 +97,41 @@ function finalizeSpacing(text) {
 
 function normalizeStationName(name) {
     if (!name) return "";
-    let formatted = name.replace(/-/g, " ").replace(/\//g, " ").replace(/\(/g, " (").replace(/\)/g, ") ");
+
+    let formatted = name.replace(/-/g, " ");
+    formatted = formatted.replace(/\//g, " ");
+    formatted = formatted.replace(/\(/g, " (");
+    formatted = formatted.replace(/\)/g, ") ");
+
     const hubs = ["hbf", "airport", "altona", "dammtor", "harburg"];
-    if (hubs.some(hub => formatted.toLowerCase().includes(hub))) {
+    const isMainHub = hubs.some(hub => formatted.toLowerCase().includes(hub));
+
+    if (isMainHub) {
         return finalizeSpacing(formatted);
     }
+
+    const words = formatted.split(/\s+/);
     const blacklisted = ["hamburg", "hh"];
-    const cleanedWords = formatted.split(/\s+/).filter(word => !blacklisted.includes(word.toLowerCase().trim()));
+
+    const cleanedWords = words.filter(word => {
+        const lowerWord = word.toLowerCase().trim();
+        return !blacklisted.includes(lowerWord);
+    });
+
     return finalizeSpacing(cleanedWords.join(" "));
 }
 
 function getLineDesign(leg) {
-    const rawName = leg?.line?.name || "WALK";
+    const rawName = leg.line?.name || "WALK";
     const name = rawName.replace(/^BUS\s+/i, "");
+
     if (name.startsWith("U")) return { name, color: "{#006192-fg}" };
     if (name.startsWith("S")) return { name, color: "{#2ea13d-fg}" };
     if (name.startsWith("A")) return { name, color: "{#fdb913-fg}" };
     if (name.startsWith("ICE")) return { name, color: "{#ffffff-fg}" };
     if (name.match(/^(RE|RB)/i)) return { name, color: "{#af00af-fg}" };
     if (name === "WALK") return { name: "WALK", color: "{#777-fg}" };
+
     return { name, color: "{#e2001a-fg}" };
 }
 
@@ -145,7 +162,6 @@ async function calculateRoute(fromName, toName) {
             return;
         }
 
-        // Header mit echten Namen aktualisieren
         const time = format(new Date(), "HH:mm");
         header.setContent(`{bold}${normalizeStationName(origin.name)}  >>  ${normalizeStationName(destination.name)}  ${time}{/bold}`);
 
@@ -154,6 +170,7 @@ async function calculateRoute(fromName, toName) {
             walkingSpeed: 'normal'
         });
         renderTable(journeys);
+        isFirstSearch = false;
     } catch (e) {
         tableBox.setContent(`\n {red-fg}Error: ${e.message}{/red-fg}`);
     }
@@ -237,8 +254,20 @@ const hideSearch = () => {
     screen.render();
 };
 
-inputFrom.on("cancel", hideSearch);
-inputTo.on("cancel", hideSearch);
+inputFrom.on("cancel", () => {
+    if (isFirstSearch) {
+        process.exit(0);
+    } else {
+        hideSearch();
+    }
+});
+inputTo.on("cancel", () => {
+    if (isFirstSearch) {
+        process.exit(0);
+    } else {
+        hideSearch();
+    }
+});
 
 screen.key(["s", "S"], () => showSearch());
 screen.key(["r", "R"], () => {

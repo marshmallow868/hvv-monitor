@@ -45,12 +45,20 @@ const searchModal = blessed.box({
     top: "center",
     left: "center",
     width: 46,
-    height: 5,
+    height: 6,
     border: "line",
     label: " Search Station ",
     tags: true,
     hidden: true,
     style: { fg: "white", bg: "black", border: { fg: "#fdb913" } }
+});
+
+const searchStatus = blessed.text({
+    parent: searchModal,
+    bottom: 0,
+    left: "center",
+    content: "Press ENTER to search",
+    style: { fg: "#777", bg: "black" }
 });
 
 const searchInput = blessed.textbox({

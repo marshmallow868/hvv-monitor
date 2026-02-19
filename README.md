@@ -1,6 +1,6 @@
 # hvv-monitor
 
-A real-time, terminal-based departure board for the Hamburg Public Transport Network (HVV). The application provides a general search interface and a specialized compact monitor designed for monitoring specific stations.
+A real-time, terminal-based departure board and route planner for the Hamburg Public Transport Network (HVV). The application provides a general search interface, a specialized compact monitor for specific stations, and a detailed journey planning tool.
 
 ## Table of Contents
 * [Features](#features)
@@ -9,6 +9,7 @@ A real-time, terminal-based departure board for the Hamburg Public Transport Net
 * [Usage](#usage)
     * [General Monitor](#1-general-monitor)
     * [Personal Monitor](#2-personal-monitor)
+    * [Route Planner](#3-route-planner)
 * [Controls](#controls)
 * [Configuration](#configuration)
 * [Shell Integration](#shell-integration)
@@ -21,6 +22,8 @@ A real-time, terminal-based departure board for the Hamburg Public Transport Net
 * **Accurate Line Representation**: Applies accurate HVV transit color codes for U-Bahn, S-Bahn, and Regional rail lines.
 * **String Normalization**: Automatically filters and removes redundant city prefixes from station names to optimize terminal space.
 * **Dual Operation Modes**: Includes a full-screen interactive dashboard and a fixed-dimension monitor for dedicated usage.
+* **Journey Planning**: Dedicated interface to search for connections between two stations with transfer details and real-time status tracking.
+* **Accurate Line Representation**: Applies accurate HVV transit color codes for U-Bahn, S-Bahn, AKN, and Regional rail lines.
 
 ## Prerequisites
 
@@ -74,16 +77,36 @@ node personal.js Hamburg Altona
 
 ![personal](/assets/personal.png)
 
+#### 3. Route Planner
+A tool to plan journeys between two locations. It displays up to 4 options, including duration, number of transfers, and real-time delays for each leg.
+
+```bash
+node planner.js ORIGIN DESTINATION
+```
+
+Example:
+
+```bash
+node personal.js Altona Kiel
+```
+
+If launched without arguments, it will automatically open the search modal.
+
+![planner](/assets/planner.png)
+
+For a proper display, a minimum terminal window size of 110x35 is required.
+
 ## Controls
 
 The application relies on standard keyboard inputs for navigation and control.
 
-| Key | Action | Context |
-| :--- | :--- | :--- |
-| **S** | Search for a new station | General Monitor only |
-| **R** | Execute a manual refresh of departure data | Both Modes |
-| **Q** | Quit the application gracefully | Both Modes |
-| **Ctrl+C** | Force termination | Both Modes |
+| Key | Action |
+| :--- | :--- |
+| **S** | Open search modal / Plan new journey |
+| **Enter** | Confirm search / Next input field |
+| **Esc** | Close modal without searching |
+| **R** | Execute a manual refresh |
+| **Q** | Quit the application |
 
 ## Configuration
 

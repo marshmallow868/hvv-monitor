@@ -51,7 +51,7 @@ npm install
 
 ## Usage
 
-The application provides two distinct executables depending on your use case.
+The application provides three distinct executables depending on your use case.
 
 #### 1. General Monitor
 The interactive version featuring station search functionality and a full-screen interface.

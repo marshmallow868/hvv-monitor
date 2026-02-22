@@ -4,7 +4,7 @@ import { profile as nahshProfile } from "hafas-client/p/nahsh/index.js";
 import { format } from "date-fns";
 
 const DEFAULT_STATION_NAME = process.argv.slice(2).join(" ");
-const UPDATE_INTERVAL_MS = 10000;
+const UPDATE_INTERVAL_MS = 30000;
 const hafas = createClient(nahshProfile, "hvv-monitor");
 
 const screen = blessed.screen({

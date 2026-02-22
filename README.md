@@ -113,10 +113,10 @@ The application relies on standard keyboard inputs for navigation and control.
 Application parameters are currently managed via constants defined within the source code. To modify these values, open the respective `.js` files in a text editor.
 
 #### Update Frequency:
-To change the automated refresh interval (default is 10 seconds):
+To change the automated refresh interval (default is 30 seconds):
 
 ```javascript
-const UPDATE_INTERVAL_MS = 10000;
+const UPDATE_INTERVAL_MS = 30000;
 ```
 
 #### Personal Monitor Dimensions:
